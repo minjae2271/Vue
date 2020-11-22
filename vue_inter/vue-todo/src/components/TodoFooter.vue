@@ -1,15 +1,27 @@
 <template>
   <div>
-      footer
+      <span v-on:click="clearAll">Clear All</span>
   </div>
 </template>
 
 <script>
 export default {
-
+  methods: {
+    clearAll: function(){
+      localStorage.clear();
+    }
+  }
 }
 </script>
 
-<style>
+<style scoped>
+  .clearAllContainer
+  {
 
+  }
+
+  .clearAllBtn
+  {
+
+  }
 </style>
