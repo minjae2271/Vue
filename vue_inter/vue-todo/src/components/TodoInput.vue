@@ -5,14 +5,25 @@
       <span class="addContainer" v-on:click="addTodo">
         <i class="fas fa-plus addBtn"></i>
       </span>
+        <!-- use the modal component, pass in the prop -->
+        <Modal v-if="showModal" @close="showModal = false">
+          <!--
+            you can use custom content here to overwrite
+            default content
+          -->
+          <h3 slot="header">warning</h3>
+        </Modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/Modal';
+
 export default {
   data: function(){
     return {
-      newTodoItem: ""
+      newTodoItem: "",
+      showModal: false,
     }
   },
   methods:{
@@ -20,12 +31,17 @@ export default {
       if(this.newTodoItem !== ''){
         this.$emit("addTodoItem", this.newTodoItem);
         this.clearInput();
+      } else {
+        this.showModal = !this.showModal;
       }
 
     },
     clearInput: function(){
       this.newTodoItem = "";
     }
+  },
+  components:{
+    Modal: Modal,
   }
 }
 </script>
