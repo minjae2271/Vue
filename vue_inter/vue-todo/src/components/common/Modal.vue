@@ -6,7 +6,7 @@
 
           <div class="modal-header">
             <slot name="header">
-              경고
+              default header
             </slot>
           </div>
 

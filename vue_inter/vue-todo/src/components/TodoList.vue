@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ul>
+    <transition-group name="list" tag="ul">
+    <!-- <ul> -->
       <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item">
         <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete(todoItem, index)"></i>
         <span v-bind:class="{textCompleted: todoItem.completed}">
@@ -10,7 +11,8 @@
           <i class="fas fa-trash-alt" v-on:click="removeTodo(todoItem,index)"></i>
         </span>
       </li>
-    </ul>
+    <!-- </ul> -->
+    </transition-group>
   </div>
 </template>
 
@@ -67,4 +69,13 @@ export default {
   {
     color: #636e72;
   }
+
+  /* transition css */
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
 </style>

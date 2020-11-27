@@ -11,7 +11,11 @@
             you can use custom content here to overwrite
             default content
           -->
-          <h3 slot="header">warning</h3>
+          <h3 slot="header">
+            warning
+            <i class="fas fa-times closeModalBtn" @click="showModal = false"></i>
+            </h3>
+          <div slot="body">내용을 입력하세요</div>
         </Modal>
   </div>
 </template>
@@ -80,6 +84,11 @@ export default {
   {
     color: white;
     vertical-align: middle;
+  }
+
+  .closeModalBtn
+  {
+    color: #3498db
   }
 
 </style>
