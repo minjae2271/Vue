@@ -15,14 +15,21 @@ import TodoFooter from './components/TodoFooter';
 
 export default {
   components:{
-    'TodoHeader': TodoHeader,
-    'TodoInput': TodoInput,
-    'TodoList' : TodoList,
-    'TodoFooter': TodoFooter,
+    // ES5
+    // 'TodoHeader': TodoHeader,
+    // 'TodoInput': TodoInput, 
+    // 'TodoList' : TodoList,
+    // 'TodoFooter': TodoFooter,
+
+    // ES6 속성명 축약
+    TodoInput, 
+    TodoHeader,
+    TodoList,
+    TodoFooter,
   },
-    created: function(){
+    created(){
     if(localStorage.length > 0){
-      for(var i=0; i < localStorage.length; i++){
+      for(let i=0; i < localStorage.length; i++){
         if(localStorage.key(i) !== "loglevel:webpack-dev-server"){
           this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
           // this.todoItems.push(localStorage.key(i))
@@ -30,25 +37,25 @@ export default {
       }
     }
   },
-  data: function(){
+  data(){
     return {
       todoItems:[]
     }
   },
   methods:{
-    addOneItem: function(item){
-      var obj = {
+    addOneItem(item){
+      const obj = {
         completed: false,
         item: item
       };
       localStorage.setItem(item, JSON.stringify(obj));
       this.todoItems.push(obj)
     },
-    removeOneItem: function(todoItem, index){
+    removeOneItem(todoItem, index){
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index,1);
     },
-    completeOneItem: function(todoItem, index){
+    completeOneItem(todoItem, index){
       // 안티루트
       //todoItem.completed = !todoItem.completed
       this.todoItems[index].completed = !this.todoItems[index].completed
@@ -56,7 +63,7 @@ export default {
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
     },
-    clearAllItems: function(){
+    clearAllItems(){
       localStorage.clear();
       this.todoItems = [];
     }
