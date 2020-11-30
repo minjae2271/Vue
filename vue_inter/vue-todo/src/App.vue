@@ -27,30 +27,12 @@ export default {
     TodoList,
     TodoFooter,
   },
-    created(){
-    if(localStorage.length > 0){
-      for(let i=0; i < localStorage.length; i++){
-        if(localStorage.key(i) !== "loglevel:webpack-dev-server"){
-          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
-          // this.todoItems.push(localStorage.key(i))
-        }
-      }
-    }
-  },
   data(){
     return {
       todoItems:[]
     }
   },
   methods:{
-    addOneItem(item){
-      const obj = {
-        completed: false,
-        item: item
-      };
-      localStorage.setItem(item, JSON.stringify(obj));
-      this.todoItems.push(obj)
-    },
     removeOneItem(todoItem, index){
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index,1);
