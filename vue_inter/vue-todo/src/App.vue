@@ -1,8 +1,8 @@
 <template>
   <div>
     <TodoHeader></TodoHeader>
-    <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
-    <TodoList v-bind:propsdata="todoItems" v-on:removeTodoItem="removeOneItem" v-on:completeTodoItem="completeOneItem"></TodoList>
+    <TodoInput></TodoInput>
+    <TodoList></TodoList>
     <TodoFooter v-on:clearAll="clearAllItems"></TodoFooter>
   </div>
 </template>
@@ -33,18 +33,14 @@ export default {
     }
   },
   methods:{
-    removeOneItem(todoItem, index){
-      localStorage.removeItem(todoItem.item);
-      this.todoItems.splice(index,1);
-    },
-    completeOneItem(todoItem, index){
-      // 안티루트
-      //todoItem.completed = !todoItem.completed
-      this.todoItems[index].completed = !this.todoItems[index].completed
-      // localstrorage는 update가 없다,,
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
-    },
+    // completeOneItem(todoItem, index){
+    //   // 안티루트
+    //   //todoItem.completed = !todoItem.completed
+    //   this.todoItems[index].completed = !this.todoItems[index].completed
+    //   // localstrorage는 update가 없다,,
+    //   localStorage.removeItem(todoItem.item);
+    //   localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
+    // },
     clearAllItems(){
       localStorage.clear();
       this.todoItems = [];

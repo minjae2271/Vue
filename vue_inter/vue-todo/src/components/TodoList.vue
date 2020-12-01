@@ -20,13 +20,14 @@
 export default {
   //props: ["propsdata"],
   methods:{
-    removeTodo(todoItem,index){
+    removeTodo(todoItem, index){
       //this.$emit("removeTodoItem", todoItem, index);
-      this.$store.commit('removeOneItem', todoItem, index)
+      this.$store.commit('removeOneItem', {todoItem, index})
       console.log(todoItem);
     },
     toggleComplete(todoItem, index){
-      this.$emit("completeTodoItem", todoItem, index);
+      //this.$emit("completeTodoItem", todoItem, index);
+      this.$store.commit('completeOneItem', todoItem, index)
     }
   }
 }

@@ -31,12 +31,20 @@ export const store = new Vuex.Store({
                 completed: false,
                 item: todoItem
               };
-              localStorage.setItem(todoItem, JSON.stringify(obj));
-              state.todoItems.push(obj)
+            localStorage.setItem(todoItem, JSON.stringify(obj));
+            state.todoItems.push(obj)
         },
-        removeOneItem(state, todoItem, index){
+        removeOneItem(state, payload){
+            localStorage.removeItem(payload.todoItem.item);
+            state.todoItems.splice(payload.index,1);
+        },
+        completeOneItem(state, todoItem, index){
+            // 안티루트
+            //todoItem.completed = !todoItem.completed
+            state.todoItems[index].completed = !state.todoItems[index].completed
+            // localstrorage는 update가 없다,,
             localStorage.removeItem(todoItem.item);
-            state.todoItems.splice(index,1);
-          },
+            localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
+        },
     }
 });
