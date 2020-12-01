@@ -26,13 +26,17 @@ export const store = new Vuex.Store({
         todoItems: storage.fetch(),
     },
     mutations: {
-        addOneItem(state, item) {
+        addOneItem(state, todoItem) {
             const obj = {
                 completed: false,
-                item: item
+                item: todoItem
               };
-              localStorage.setItem(item, JSON.stringify(obj));
+              localStorage.setItem(todoItem, JSON.stringify(obj));
               state.todoItems.push(obj)
-        }
+        },
+        removeOneItem(state, todoItem, index){
+            localStorage.removeItem(todoItem.item);
+            state.todoItems.splice(index,1);
+          },
     }
 });

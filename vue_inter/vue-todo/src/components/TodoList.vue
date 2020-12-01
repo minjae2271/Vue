@@ -21,7 +21,8 @@ export default {
   //props: ["propsdata"],
   methods:{
     removeTodo(todoItem,index){
-      this.$emit("removeTodoItem", todoItem, index);
+      //this.$emit("removeTodoItem", todoItem, index);
+      this.$store.commit('removeOneItem', todoItem, index)
       console.log(todoItem);
     },
     toggleComplete(todoItem, index){
