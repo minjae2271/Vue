@@ -27,7 +27,7 @@ export default {
     },
     toggleComplete(todoItem, index){
       //this.$emit("completeTodoItem", todoItem, index);
-      this.$store.commit('completeOneItem', todoItem, index)
+      this.$store.commit('completeOneItem', {todoItem, index})
     }
   }
 }

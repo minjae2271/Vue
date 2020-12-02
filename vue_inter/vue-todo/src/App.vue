@@ -3,7 +3,7 @@
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
     <TodoList></TodoList>
-    <TodoFooter v-on:clearAll="clearAllItems"></TodoFooter>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
@@ -29,22 +29,11 @@ export default {
   },
   data(){
     return {
-      todoItems:[]
+      
     }
   },
   methods:{
-    // completeOneItem(todoItem, index){
-    //   // 안티루트
-    //   //todoItem.completed = !todoItem.completed
-    //   this.todoItems[index].completed = !this.todoItems[index].completed
-    //   // localstrorage는 update가 없다,,
-    //   localStorage.removeItem(todoItem.item);
-    //   localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
-    // },
-    clearAllItems(){
-      localStorage.clear();
-      this.todoItems = [];
-    }
+
   }
 }
 </script>
