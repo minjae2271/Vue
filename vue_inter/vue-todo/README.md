@@ -144,3 +144,80 @@ methods: {
 
 * 특정 시점에 어떤 컴포넌트가 state를 접근하여 변경한 건지 확인 어려움
 * 따라서, 뷰의 반응성을 거스르지 않게 명시적으로 상태변화를 수행
+
+### 2. 각 속성들을 더 쉽게 사용할 수 있는 방법 - Helper
+
+* State -> mapState
+* Getters -> mapGetters
+* Mutations -> mapMutations
+* Actions -> mapActions
+
+
+
+### Helper 사용법
+
+```javascript
+//App.vue
+import {mapState} from 'vuex'
+import {mapGetters} from 'vuex'
+import {mapMutations} from 'vuex'
+import {mapActions} from 'vuex'
+
+export default {
+	computed: {...mapState(['num']), ...mapGetters(['countedNum'])},
+	methods: {...mapMutations(['clickBtn']), ...mapGetters(['asyncClickBtn'])}
+}
+```
+
+
+
+### mapState
+
+* Vuex에서 선언한 state 속성을 뷰 컴포넌트에 더 쉽게 연결 해주는 헬퍼
+
+```javascript
+//App.vue
+import {mapState} from 'vuex'
+
+computed: {
+	...mapState(['num'])
+}
+
+//store.js
+state: {
+	num: 10
+}
+```
+
+```html
+<!--<p>{{this.$store.state.num}}</p>-->
+<p>{{this.num}}</p>
+```
+
+
+
+### mapGetters
+
+* Vuex에서 선언한 getters 속성을 뷰 컴포넌트에 더 쉽게 연결 해주는 헬퍼
+
+```javascript
+//App.vue
+import {mapGetters} from 'vuex'
+
+computed: {
+	...mapGetters(['reverseMessage'])
+}
+
+//store.js
+getters: {
+	reverseMessage(state){
+		return state.msg.split('').reverse().join('')
+	}
+}
+```
+
+```html
+<!--<p>{{this.$store.getters.reverseMessage}}</p>-->
+<p>{{this.reverseMessage}}</p>
+```
+
