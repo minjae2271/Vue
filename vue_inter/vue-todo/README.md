@@ -221,3 +221,80 @@ getters: {
 <p>{{this.reverseMessage}}</p>
 ```
 
+
+
+### mapMutations
+
+* Vuex에서 선언한 mutations 속성을 뷰 컴포넌트에 더 쉽게 연결 해주는 헬퍼
+
+```javascript
+//App.vue
+import {mapMutations} from 'vuex'
+
+methods: {
+  ...mapMutations(['clickBtn'])
+}
+
+//store.js
+mutations: {
+  clickBtn(State){
+    alert(state.msg)
+  }
+}
+```
+
+```html
+<button @click='clickBtn'>popup msg</button>
+```
+
+
+
+### mapActions
+
+* Vuex에서 선언한 actions 속성을 뷰 컴포넌트에 더 쉽게 연결 해주는 헬퍼
+
+```javascript
+//App.vue
+import {mapActions} from 'vuex'
+
+methods: {
+  ...mapActions(['delayClickBtn'])
+}
+
+//store.js
+actions: {
+  delayClickBtn(context) {
+    setTimeout(() => context.commit('clickBtn'),2000);
+  }
+}
+```
+
+```html
+<button @click='delayClickBtn'>delay popup msg</button>
+```
+
+
+
+### helper의 유연한 문법
+
+* vuex에 선언한 속성을 그대로 컴포넌트에 연결하는 문법
+
+```javascript
+// array literal
+...mapMutations([
+  'clickBtn', //clickBtn: 'clickBtn'
+  'addNum' // addNum(arg)
+])
+```
+
+
+
+* vuex에 선언한 속성을 컴포넌트의 특정 메서드에 연결하는 문법
+
+```javascript
+//object literal
+...mapMutations({
+	popupMsg: 'clickBtn' //컴포넌트 메서드명: store.js의 mutation 이름
+})
+```
+
