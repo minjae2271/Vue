@@ -10,6 +10,11 @@ export default {
         return {
             name: "nuxt.js"
         }
+    },
+    head() {
+        return {
+            title: '회원가입'
+        }
     }
 }
 </script>

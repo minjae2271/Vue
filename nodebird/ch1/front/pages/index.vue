@@ -10,7 +10,7 @@ export default {
         return {
             name: "nuxt.js"
         }
-    }
+    },
 }
 </script>
 
