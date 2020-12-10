@@ -3,18 +3,21 @@
     "name": "profile",
     "path": "/profile",
     "component": "/Users/minjae/vue/nodebird/ch1/front/pages/profile.vue",
-    "chunkName": "pages/profile"
+    "chunkName": "pages/profile",
+    "_name": "_5c56f635"
   },
   {
     "name": "signup",
     "path": "/signup",
     "component": "/Users/minjae/vue/nodebird/ch1/front/pages/signup.vue",
-    "chunkName": "pages/signup"
+    "chunkName": "pages/signup",
+    "_name": "_684282bc"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/minjae/vue/nodebird/ch1/front/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_3f80e5de"
   }
 ]

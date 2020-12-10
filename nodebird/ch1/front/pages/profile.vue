@@ -12,7 +12,7 @@ export default {
         }
     },
     // nuxt가 지원해주는 것들!
-    layout: 'admin',
+    //layout: 'admin',
     head() {
         return {
             title: '프로필'
