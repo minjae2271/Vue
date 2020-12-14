@@ -79,9 +79,33 @@ export default {
         }
     },
     methods: {
-        onSubmitForm(){
+        // then / catch
+        // onSubmitForm(){
+        //     if(this.$refs.form.validate()){
+        //         this.$store.dispatch('users/signUp',{
+        //             nickname: this.nickname,
+        //             password: this.password,
+        //         }).then(() => {
+        //             this.$router.push({
+        //                 path: '/',
+        //             });
+        //         }).catch(() => {
+        //             alert('oops login faliled')
+        //         })
+        //     }else{
+        //         alert('invalid form')
+        //     }
+        // }
+        async onSubmitForm(){
             if(this.$refs.form.validate()){
-                alert('login try')
+                try{
+                    await this.$store.dispatch('users/signUp',{
+                    nickname: this.nickname,
+                    password: this.password,
+                })
+                } catch {
+                    alert('oops login faliled')
+                }
             }else{
                 alert('invalid form')
             }

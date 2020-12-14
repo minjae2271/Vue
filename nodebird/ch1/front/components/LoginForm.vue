@@ -1,6 +1,6 @@
 <template>
   <v-container>
-      <v-card>
+      <v-card v-if="!me">
           <v-form ref="form" v-model="valid" @submit.prevent="onSubmitForm">
               <v-container>
                   <v-text-field
@@ -21,6 +21,12 @@
                   <v-btn nuxt to="/signup">회원가입</v-btn>
               </v-container>
           </v-form>
+      </v-card>
+      <v-card v-else>
+        <v-container>
+          {{me.nickname}}님 로그인 되었어요!
+          <v-btn @click="logOut">로그아웃</v-btn>
+        </v-container>
       </v-card>
   </v-container>
 </template>
@@ -45,12 +51,23 @@ export default {
   methods: {
     onSubmitForm(){
       if(this.$refs.form.validate()){
-        alert('로그인 되었습니다!')
+        this.$store.dispatch('users/logIn', {
+          email: this.email,
+          nickname: "mjmj",
+        })
       }else{
         alert('로그인 실패 ㅠㅠ')
       }
+    },
+    logOut(){
+      this.$store.dispatch('users/logOut')
+    },
+  },
+  computed: {
+      me(){
+        return this.$store.state.users.me;
     }
-  }
+}
 }
 </script>
 
