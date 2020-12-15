@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data(){
     return {
@@ -38,25 +40,37 @@ export default {
   },
   methods: {
     async onSubmitForm() {
-      console.log("duidui")
       if(this.$refs.form.validate()){
         try{
-          console.log("valid!")
           await this.$store.dispatch('posts/add',{
-            content: this.content
+            content: this.content,
+            user: {
+              nickname: this.me.nickname
+            },
+            images:[],
+            comments:[],
+            id: Date.now(),
+            createdAt: Date.now()
           })
           } catch {
             alert("oops post failed")
           }
     } else {
-      console.log("no valid")
       alert('양식이 맞지 않습니다.')
     }
       
     },
     onChangeTextarea() {
       this.hideDetails = true
+      this.success = false
+      this.successMessage = ''
     }
+  },
+  computed: {
+    // me(){
+    //   return this.$store.state.users.me;
+    // }
+    ...mapState('users',['me'])
   }
 }
 </script>
