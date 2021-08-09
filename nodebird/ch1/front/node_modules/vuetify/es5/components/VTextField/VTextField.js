@@ -177,10 +177,10 @@ var _default = baseMixins.extend().extend({
       };
     },
     showLabel: function showLabel() {
-      return this.hasLabel && (!this.isSingle || !this.isLabelActive && !this.placeholder);
+      return this.hasLabel && !(this.isSingle && this.labelValue);
     },
     labelValue: function labelValue() {
-      return !this.isSingle && Boolean(this.isFocused || this.isLabelActive || this.placeholder);
+      return this.isFocused || this.isLabelActive;
     }
   },
   watch: {
@@ -306,15 +306,20 @@ var _default = baseMixins.extend().extend({
       return this.genSlot('append', 'inner', [this.genIcon('clear', this.clearableCallback, data)]);
     },
     genCounter: function genCounter() {
+      var _ref;
+
       if (!this.hasCounter) return null;
       var max = this.counter === true ? this.attrs$.maxlength : this.counter;
-      return this.$createElement(_VCounter.default, {
-        props: {
-          dark: this.dark,
-          light: this.light,
-          max: max,
-          value: this.computedCounterValue
-        }
+      var props = {
+        dark: this.dark,
+        light: this.light,
+        max: max,
+        value: this.computedCounterValue
+      };
+      return (_ref = this.$scopedSlots.counter == null ? void 0 : this.$scopedSlots.counter({
+        props: props
+      })) != null ? _ref : this.$createElement(_VCounter.default, {
+        props: props
       });
     },
     genControl: function genControl() {
@@ -375,7 +380,7 @@ var _default = baseMixins.extend().extend({
           autofocus: this.autofocus,
           disabled: this.isDisabled,
           id: this.computedId,
-          placeholder: this.placeholder,
+          placeholder: this.isFocused || !this.hasLabel ? this.placeholder : undefined,
           readonly: this.isReadonly,
           type: this.type
         }),

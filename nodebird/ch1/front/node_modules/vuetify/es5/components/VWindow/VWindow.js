@@ -64,6 +64,7 @@ var _default = _VItemGroup.BaseItemGroup.extend({
   },
   data: function data() {
     return {
+      changedByDelimiters: false,
       internalHeight: undefined,
       transitionHeight: undefined,
       transitionCount: 0,
@@ -140,27 +141,37 @@ var _default = _VItemGroup.BaseItemGroup.extend({
       }, children);
     },
     genIcon: function genIcon(direction, icon, _click) {
-      return this.$createElement('div', {
-        staticClass: "v-window__".concat(direction)
-      }, [this.$createElement(_VBtn.default, {
+      var _this3 = this,
+          _ref;
+
+      var on = {
+        click: function click(e) {
+          e.stopPropagation();
+          _this3.changedByDelimiters = true;
+
+          _click();
+        }
+      };
+      var attrs = {
+        'aria-label': this.$vuetify.lang.t("$vuetify.carousel.".concat(direction))
+      };
+      var children = (_ref = this.$scopedSlots[direction] == null ? void 0 : this.$scopedSlots[direction]({
+        on: on,
+        attrs: attrs
+      })) != null ? _ref : [this.$createElement(_VBtn.default, {
         props: {
           icon: true
         },
-        attrs: {
-          'aria-label': this.$vuetify.lang.t("$vuetify.carousel.".concat(direction))
-        },
-        on: {
-          click: function click(e) {
-            e.stopPropagation();
-
-            _click();
-          }
-        }
+        attrs: attrs,
+        on: on
       }, [this.$createElement(_VIcon.default, {
         props: {
           large: true
         }
-      }, icon)])]);
+      }, icon)])];
+      return this.$createElement('div', {
+        staticClass: "v-window__".concat(direction)
+      }, children);
     },
     genControlIcons: function genControlIcons() {
       var icons = [];
@@ -224,7 +235,7 @@ var _default = _VItemGroup.BaseItemGroup.extend({
     }
   },
   render: function render(h) {
-    var _this3 = this;
+    var _this4 = this;
 
     var data = {
       staticClass: 'v-window',
@@ -235,10 +246,10 @@ var _default = _VItemGroup.BaseItemGroup.extend({
     if (!this.touchless) {
       var value = this.touch || {
         left: function left() {
-          _this3.$vuetify.rtl ? _this3.prev() : _this3.next();
+          _this4.$vuetify.rtl ? _this4.prev() : _this4.next();
         },
         right: function right() {
-          _this3.$vuetify.rtl ? _this3.next() : _this3.prev();
+          _this4.$vuetify.rtl ? _this4.next() : _this4.prev();
         },
         end: function end(e) {
           e.stopPropagation();

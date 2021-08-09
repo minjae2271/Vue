@@ -13,23 +13,38 @@
       </v-container>
   </div> -->
     <v-list>
-        <v-list-item>
-            <span>Boreum</span>
-            <v-icon>mdi-minus-circle-outline</v-icon>
-        </v-list-item>
-        <v-list-item>
-            <span>DonKKa</span>
-            <v-icon>mdi-minus-circle-outline</v-icon>
-        </v-list-item>
-        <v-list-item>
-            <span>simpson</span>
-            <v-icon>mdi-minus-circle-outline</v-icon>
+        <v-list-item v-for="f in users" :key="f.id">
+            <span>{{f.nickname}}</span>
+            <v-icon @click="remove(f.id)">mdi-minus-circle-outline</v-icon>
         </v-list-item>
     </v-list>
 </template>
 
 <script>
 export default {
+    props:{
+        users: {
+            type: Array,
+            required: true
+        },
+        remove: {
+            type: Function,
+            required: true
+        }
+    },
+    data(){
+        return {
+
+        }
+    },
+    computed:{
+        followingList(){
+            return this.$store.state.users.followingList;
+        }
+    },
+    methods:{
+
+    }
 
 }
 </script>

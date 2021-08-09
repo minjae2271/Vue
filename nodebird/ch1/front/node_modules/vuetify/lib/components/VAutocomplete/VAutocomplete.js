@@ -37,8 +37,7 @@ export default VSelect.extend({
     },
     noFilter: Boolean,
     searchInput: {
-      type: String,
-      default: undefined
+      type: String
     }
   },
 
@@ -157,7 +156,7 @@ export default VSelect.extend({
 
     isMenuActive(val) {
       if (val || !this.hasSlot) return;
-      this.lazySearch = undefined;
+      this.lazySearch = null;
     },
 
     items(val, oldVal) {
@@ -247,7 +246,7 @@ export default VSelect.extend({
       const nextItem = this.selectedItems[nextIndex];
 
       if (!nextItem) {
-        this.setValue(this.multiple ? [] : undefined);
+        this.setValue(this.multiple ? [] : null);
       } else {
         this.selectItem(curItem);
       }
@@ -256,7 +255,7 @@ export default VSelect.extend({
     },
 
     clearableCallback() {
-      this.internalSearch = undefined;
+      this.internalSearch = null;
       VSelect.options.methods.clearableCallback.call(this);
     },
 

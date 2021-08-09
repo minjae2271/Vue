@@ -160,11 +160,11 @@ export default baseMixins.extend().extend({
     },
 
     showLabel() {
-      return this.hasLabel && (!this.isSingle || !this.isLabelActive && !this.placeholder);
+      return this.hasLabel && !(this.isSingle && this.labelValue);
     },
 
     labelValue() {
-      return !this.isSingle && Boolean(this.isFocused || this.isLabelActive || this.placeholder);
+      return this.isFocused || this.isLabelActive;
     }
 
   },
@@ -293,15 +293,20 @@ export default baseMixins.extend().extend({
     },
 
     genCounter() {
+      var _ref;
+
       if (!this.hasCounter) return null;
       const max = this.counter === true ? this.attrs$.maxlength : this.counter;
-      return this.$createElement(VCounter, {
-        props: {
-          dark: this.dark,
-          light: this.light,
-          max,
-          value: this.computedCounterValue
-        }
+      const props = {
+        dark: this.dark,
+        light: this.light,
+        max,
+        value: this.computedCounterValue
+      };
+      return (_ref = this.$scopedSlots.counter == null ? void 0 : this.$scopedSlots.counter({
+        props
+      })) != null ? _ref : this.$createElement(VCounter, {
+        props
       });
     },
 
@@ -368,7 +373,7 @@ export default baseMixins.extend().extend({
           autofocus: this.autofocus,
           disabled: this.isDisabled,
           id: this.computedId,
-          placeholder: this.placeholder,
+          placeholder: this.isFocused || !this.hasLabel ? this.placeholder : undefined,
           readonly: this.isReadonly,
           type: this.type
         },

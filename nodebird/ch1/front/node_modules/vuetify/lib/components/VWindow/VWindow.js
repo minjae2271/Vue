@@ -51,6 +51,7 @@ export default BaseItemGroup.extend({
 
   data() {
     return {
+      changedByDelimiters: false,
       internalHeight: undefined,
       transitionHeight: undefined,
       transitionCount: 0,
@@ -132,26 +133,35 @@ export default BaseItemGroup.extend({
     },
 
     genIcon(direction, icon, click) {
-      return this.$createElement('div', {
-        staticClass: `v-window__${direction}`
-      }, [this.$createElement(VBtn, {
+      var _ref;
+
+      const on = {
+        click: e => {
+          e.stopPropagation();
+          this.changedByDelimiters = true;
+          click();
+        }
+      };
+      const attrs = {
+        'aria-label': this.$vuetify.lang.t(`$vuetify.carousel.${direction}`)
+      };
+      const children = (_ref = this.$scopedSlots[direction] == null ? void 0 : this.$scopedSlots[direction]({
+        on,
+        attrs
+      })) != null ? _ref : [this.$createElement(VBtn, {
         props: {
           icon: true
         },
-        attrs: {
-          'aria-label': this.$vuetify.lang.t(`$vuetify.carousel.${direction}`)
-        },
-        on: {
-          click: e => {
-            e.stopPropagation();
-            click();
-          }
-        }
+        attrs,
+        on
       }, [this.$createElement(VIcon, {
         props: {
           large: true
         }
-      }, icon)])]);
+      }, icon)])];
+      return this.$createElement('div', {
+        staticClass: `v-window__${direction}`
+      }, children);
     },
 
     genControlIcons() {

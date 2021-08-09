@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { normalizeURL } from '@nuxt/ufo'
+import { normalizeURL, decode } from '@nuxt/ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _5c56f635 = () => interopDefault(import('../pages/profile.vue' /* webpackChunkName: "pages/profile" */))
 const _684282bc = () => interopDefault(import('../pages/signup.vue' /* webpackChunkName: "pages/signup" */))
+const _4e901632 = () => interopDefault(import('../pages/user/index.vue' /* webpackChunkName: "pages/user/index" */))
+const _c1bb4e74 = () => interopDefault(import('../pages/hashtag/_id/index.vue' /* webpackChunkName: "pages/hashtag/_id/index" */))
+const _265edc32 = () => interopDefault(import('../pages/post/_id/index.vue' /* webpackChunkName: "pages/post/_id/index" */))
+const _362ec81d = () => interopDefault(import('../pages/user/_id/index.vue' /* webpackChunkName: "pages/user/_id/index" */))
 const _3f80e5de = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 // TODO: remove in Nuxt 3
@@ -33,6 +37,22 @@ export const routerOptions = {
     component: _684282bc,
     name: "signup"
   }, {
+    path: "/user",
+    component: _4e901632,
+    name: "user"
+  }, {
+    path: "/hashtag/:id",
+    component: _c1bb4e74,
+    name: "hashtag-id"
+  }, {
+    path: "/post/:id",
+    component: _265edc32,
+    name: "post-id"
+  }, {
+    path: "/user/:id",
+    component: _362ec81d,
+    name: "user-id"
+  }, {
     path: "/",
     component: _3f80e5de,
     name: "index"
@@ -44,7 +64,7 @@ export const routerOptions = {
 function decodeObj(obj) {
   for (const key in obj) {
     if (typeof obj[key] === 'string') {
-      obj[key] = decodeURIComponent(obj[key])
+      obj[key] = decode(obj[key])
     }
   }
 }

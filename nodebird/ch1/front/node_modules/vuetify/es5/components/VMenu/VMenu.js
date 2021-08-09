@@ -241,6 +241,10 @@ var _default = baseMixins.extend({
         this.nextTile();
       } else if (e.keyCode === _helpers.keyCodes.up) {
         this.prevTile();
+      } else if (e.keyCode === _helpers.keyCodes.end) {
+        this.lastTile();
+      } else if (e.keyCode === _helpers.keyCodes.home) {
+        this.firstTile();
       } else if (e.keyCode === _helpers.keyCodes.enter && this.listIndex !== -1) {
         this.tiles[this.listIndex].click();
       } else {
@@ -401,6 +405,18 @@ var _default = baseMixins.extend({
 
       this.listIndex--;
       if (tile.tabIndex === -1) this.prevTile();
+    },
+    lastTile: function lastTile() {
+      var tile = this.tiles[this.tiles.length - 1];
+      if (!tile) return;
+      this.listIndex = this.tiles.length - 1;
+      if (tile.tabIndex === -1) this.prevTile();
+    },
+    firstTile: function firstTile() {
+      var tile = this.tiles[0];
+      if (!tile) return;
+      this.listIndex = 0;
+      if (tile.tabIndex === -1) this.nextTile();
     },
     onKeyDown: function onKeyDown(e) {
       var _this6 = this;

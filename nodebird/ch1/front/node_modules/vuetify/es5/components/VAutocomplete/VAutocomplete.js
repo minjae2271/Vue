@@ -59,8 +59,7 @@ var _default2 = _VSelect.default.extend({
     },
     noFilter: Boolean,
     searchInput: {
-      type: String,
-      default: undefined
+      type: String
     }
   },
   data: function data() {
@@ -170,7 +169,7 @@ var _default2 = _VSelect.default.extend({
     },
     isMenuActive: function isMenuActive(val) {
       if (val || !this.hasSlot) return;
-      this.lazySearch = undefined;
+      this.lazySearch = null;
     },
     items: function items(val, oldVal) {
       // If we are focused, the menu
@@ -254,7 +253,7 @@ var _default2 = _VSelect.default.extend({
       var nextItem = this.selectedItems[nextIndex];
 
       if (!nextItem) {
-        this.setValue(this.multiple ? [] : undefined);
+        this.setValue(this.multiple ? [] : null);
       } else {
         this.selectItem(curItem);
       }
@@ -262,7 +261,7 @@ var _default2 = _VSelect.default.extend({
       this.selectedIndex = nextIndex;
     },
     clearableCallback: function clearableCallback() {
-      this.internalSearch = undefined;
+      this.internalSearch = null;
 
       _VSelect.default.options.methods.clearableCallback.call(this);
     },

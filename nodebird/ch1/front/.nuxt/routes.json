@@ -14,6 +14,34 @@
     "_name": "_684282bc"
   },
   {
+    "name": "user",
+    "path": "/user",
+    "component": "/Users/minjae/vue/nodebird/ch1/front/pages/user/index.vue",
+    "chunkName": "pages/user/index",
+    "_name": "_4e901632"
+  },
+  {
+    "name": "hashtag-id",
+    "path": "/hashtag/:id",
+    "component": "/Users/minjae/vue/nodebird/ch1/front/pages/hashtag/_id/index.vue",
+    "chunkName": "pages/hashtag/_id/index",
+    "_name": "_c1bb4e74"
+  },
+  {
+    "name": "post-id",
+    "path": "/post/:id",
+    "component": "/Users/minjae/vue/nodebird/ch1/front/pages/post/_id/index.vue",
+    "chunkName": "pages/post/_id/index",
+    "_name": "_265edc32"
+  },
+  {
+    "name": "user-id",
+    "path": "/user/:id",
+    "component": "/Users/minjae/vue/nodebird/ch1/front/pages/user/_id/index.vue",
+    "chunkName": "pages/user/_id/index",
+    "_name": "_362ec81d"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/Users/minjae/vue/nodebird/ch1/front/pages/index.vue",

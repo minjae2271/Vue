@@ -136,6 +136,7 @@ var _default2 = (0, _mixins.default)(_localable.default, _picker.default).extend
       type: String,
       default: '$vuetify.datePicker.itemsSelected'
     },
+    showAdjacentMonths: Boolean,
     showWeek: Boolean,
     // Function formatting currently selected date in the picker title
     titleDateFormat: Function,
@@ -475,6 +476,7 @@ var _default2 = (0, _mixins.default)(_localable.default, _picker.default).extend
           range: this.range,
           readonly: this.readonly,
           scrollable: this.scrollable,
+          showAdjacentMonths: this.showAdjacentMonths,
           showWeek: this.showWeek,
           tableDate: "".concat((0, _util.pad)(this.tableYear, 4), "-").concat((0, _util.pad)(this.tableMonth + 1)),
           value: this.value,

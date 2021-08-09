@@ -53,7 +53,8 @@ export default {
       if(this.$refs.form.validate()){
         this.$store.dispatch('users/logIn', {
           email: this.email,
-          nickname: "mjmj",
+          password: this.password,
+          nickname: this.nickname,
         })
       }else{
         alert('로그인 실패 ㅠㅠ')

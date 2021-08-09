@@ -78,6 +78,20 @@ export default {
             ]
         }
     },
+    watch: {
+        me(newVal, oldVal){
+            if(newVal){
+                this.$router.push({
+                    path: '/',
+                })
+            }
+        }
+    },
+    computed: {
+        me(){
+            return this.$store.state.users.me;
+        }
+    },
     methods: {
         // then / catch
         // onSubmitForm(){
@@ -99,7 +113,8 @@ export default {
         async onSubmitForm(){
             if(this.$refs.form.validate()){
                 try{
-                    await this.$store.dispatch('users/signUp',{
+                    await this.$store.dispatch('users/signUp', {
+                    email: this.email,
                     nickname: this.nickname,
                     password: this.password,
                 })
@@ -111,6 +126,7 @@ export default {
             }
         }
     },
+    middleware: 'anonymous',
     head() {
         return {
             title: '회원가입'
