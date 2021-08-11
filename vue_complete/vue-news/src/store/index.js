@@ -42,16 +42,25 @@ export const store = new Vuex.Store({
         }
     },
     actions: {
-        FETCH_NEWS(context ){
-            fetchNewsList()
-            .then(response => {
-                console.log(response.data);
+        async FETCH_NEWS(context ){
+            // fetchNewsList()
+            // .then(response => {
+            //     console.log(response.data);
+            //     context.commit('SET_NEWS', response.data);
+            //     return response;
+            // })
+            // .catch(error => {
+            //     console.log(error);
+            // })
+            try{
+                const response = await fetchNewsList();
                 context.commit('SET_NEWS', response.data);
-                return response;
-            })
-            .catch(error => {
-                console.log(error);
-            })
+                return response
+            } catch(err){
+                console.error(err);
+            }
+
+
         },
         //destructuring
         FETCH_JOBS({commit}){
